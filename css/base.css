@@ -1,0 +1,116 @@
+/*
+重置元素，避免浏览器差异
+*/
+body,div,ul,li,a,img {
+    padding: 0;
+    margin: 0;
+}
+img{ border: none; }
+
+body{	
+    font: normal 14px "微软雅黑", "Arial", "Verdana", "sans-serif";
+    color: #666;
+    /*background-color: #deebf3;*/
+    background-color: #fff;
+    min-width: 960px;
+    margin: 0 auto;
+}
+
+a {
+	color: #666;
+    text-decoration: none;
+}
+
+a:hover { font-weight: bold; }
+
+ul{
+    list-style: none; 
+}
+
+#symphony{
+    margin: 0 auto;
+}
+#sym_header{
+	height: 154px ;
+	background-image: url(../img/home_01.jpg);
+	background-repeat: no-repeat;
+    background-position: center 50%;
+	background-color: #ccc;
+	width: 100% ;
+	z-index: 3;
+}
+
+#sym_main{
+	background-color: #ccc;
+    width: 1920px;
+    margin: 0 auto;
+}
+
+#sym_footer{
+	height: 18px;  
+	line-height: 18px;
+    text-align: center;
+    border-top: 1px solid #fff;
+    background: #ccc;
+}
+
+#header_top{
+	margin: 0px auto;
+    padding-left: 390px;
+    width: 540px;
+    height: 30px;
+    padding-top: 4px;
+}
+#header_nav{
+	margin: 0px auto;
+	padding-top: 85px;
+	width: 960px;
+	height: 35px;
+}
+
+#header_nav > li
+{
+    position: relative;
+    float: left;
+    width: 121px;
+}
+
+#header_nav > li > a {
+    width:120px; 
+    border-right:1px solid #ccc; 
+  
+}
+#header_nav > li > ul
+{
+    position: absolute;
+    left: -9999px;
+}
+#header_nav > li:hover > ul 
+{
+    display: block;
+    position: relative;
+    left: 0;
+    border: 1px solid #ccc;
+}
+#header_nav > li:hover > ul > li{
+    background: #861;
+}
+#header_nav > li:hover > ul > li > a
+{
+    min-width: 120px;
+    border-bottom : 1px solid #ccc; 
+}
+
+#header_nav > li > a ,
+#header_nav > li:hover > ul > li > a{
+	height: 35px;
+    line-height: 35px;
+    text-align:center; 
+    display:block; 
+	color : #fff;
+}
+
+#header_nav > li > a:hover,
+#header_nav > li:hover > ul > li > a:hover{
+    background-color: #972;
+}

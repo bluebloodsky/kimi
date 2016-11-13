@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<LnMap>
+	<Header version="1.0.0.2" toolID="Hand" id="map" nameStructure="MapFile">
+		<History>
+			<Hitem version="1.0.0.0" revision="0" what="创建采集程序映射文件" when="2014-08-10" who="zl"/>
+			<Hitem version="1.0.0.1" revision="1.0.0.0" what="根据浙江标准创建相应公共信息映射" when="2014-05-25" who="wujj"/>
+			<Hitem version="1.0.0.2" revision="1.0.0.1" what="将重载和开始采集短地址加上reset" when="2014-09-30" who="zl"/>
+			<Hitem version="1.0.0.3" revision="1.0.0.2" what="添加铁心避雷器映射" when="2015-02-05" who="zl"/>
+			<Hitem version="1.0.0.4" revision="1.0.0.3" what="添加遥测int型cdcType='5'" when="2015-04-01" who="zl"/>
+			<Hitem version="1.0.0.5" revision="1.0.0.4" what="添加SP中立即采集和重启" when="2015-04-01" who="zl"/>
+			<Hitem version="1.0.0.6" revision="1.0.0.5" what="添加SG中立即采集和重启" when="2015-05-18" who="zl"/>
+			<Hitem version="1.0.0.7" revision="1.0.0.6" what="添加套管局放映射" when="2015-05-18" who="zl"/>
+			<Hitem version="1.0.0.8" revision="1.0.0.7" what="完善局放映射" when="2015-06-24" who="wujj"/>
+			<Hitem version="1.0.0.9" revision="1.0.0.8" what="在DO:ZSAR映射关系中添加变比、单位、精度等信息" when="2015-07-02" who="wujj"/>
+			<Hitem version="1.0.1.0" revision="1.0.0.9" what="添加设备health" when="2015-07-17" who="zl"/>
+			<Hitem version="1.0.1.1" revision="1.0.1.0" what="修改绝对产气率和相对产气率单位" when="2015-07-17" who="zl"/>
+		</History>
+		<!--name:与数据库字段保持一直，
+		    desc:显示中文字段名
+		    cdcType:0遥测float 1遥信bool 2遥设int 3遥调
+			order:与采集程序一致
+			shortAddr:短地址，与61850上送相关
+			ratio:变比，默认不改变数据
+			unit:单位 默认空
+			precision：精度，默认不改变
+            importLevel：0不读取此字段 1读取并在表格中显示 2读取并在表格和绘图中显示	默认0		
+		-->
+	</Header>
+	<!--所有的数据按遥测和遥信分别存在两个list表中根据存储的顺序转化为短地址发出，下行数据分为遥设和遥调-->
+	<Ln name="COMMON" desc="公共信息">
+		<Do name="PhyHealth" desc="IED健康状态" cdcType="4" order="0" shortAddr="1"/>
+	</Ln>
+	<Ln name="SIML" desc="油色谱">
+		<!--GE油色谱数据按照寄存器中存储数据一次插入list中，依次为H2/CO2/CO/C2H4/C2H6/CH4/C2H2/H2O/O2/TDCG/N2/TDG/油压/油温/环境温度/正常温度/总烃（计算所得）17个，当order>16时发送无效数据-->
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<Do name="H2Alm" desc="氢气报警" cdcType="1" order="3" shortAddr="4" importLevel="1"/>
+		<Do name="H2Warn" desc="氢气警告" cdcType="1" order="4" shortAddr="5" importLevel="1"/>
+		<Do name="C2H2Alm" desc="乙炔报警" cdcType="1" order="5" shortAddr="6" importLevel="1"/>
+		<Do name="C2H2Warn" desc="乙炔警告" cdcType="1" order="6" shortAddr="7" importLevel="1"/>
+		<Do name="MstAlm" desc="微水报警" cdcType="1" order="7" shortAddr="9" importLevel="1"/>
+		<Do name="MstWarn" desc="微水警告" cdcType="1" order="8" shortAddr="8" importLevel="1"/>
+		<Do name="CxHyAlm" desc="总烃报警" cdcType="1" order="9" shortAddr="10" importLevel="0"/>
+		<Do name="CxHyWarn" desc="总烃警告" cdcType="1" order="10" shortAddr="11" importLevel="0"/>
+		<Do name="InsAlm" desc="绝缘液体报警" cdcType="1" order="99" shortAddr="3" importLevel="0"/>
+		<Do name="GasUnPresAlm" desc="载气欠压报警" cdcType="1" order="12" shortAddr="15" importLevel="0"/>
+		<Do name="GasLowPresAlm" desc="载气低压报警" cdcType="1" order="11" shortAddr="16" importLevel="0"/>
+		<Do name="GasBot" desc="异常的气瓶号" cdcType="4" order="99" shortAddr="13" importLevel="0"/>
+		<Do name="ActCyGasSta" desc="实际气瓶供气状态异常" cdcType="1" order="99" shortAddr="14" importLevel="0"/>
+		<!--遥信信息（FC=ST）结束-->
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="Tmp" desc="绝缘液体温度" cdcType="0" order="99" shortAddr="1"/>
+		<Do name="Mst" desc="微水" cdcType="0" order="7" shortAddr="3" importLevel="0" unit="ppm" precision="2"/>
+		<Do name="H2ppm" desc="氢气" cdcType="0" order="0" shortAddr="4" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="N2ppm" desc="氮气" cdcType="0" order="10" shortAddr="5" importLevel="0" unit="ppm" precision="2"/>
+		<Do name="COppm" desc="一氧化碳" cdcType="0" order="2" shortAddr="6" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="CO2ppm" desc="二氧化碳" cdcType="0" order="1" shortAddr="7" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="CH4ppm" desc="甲烷" cdcType="0" order="5" shortAddr="8" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="C2H2ppm" desc="乙炔" cdcType="0" order="6" shortAddr="9" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="C2H4ppm" desc="乙烯" cdcType="0" order="3" shortAddr="10" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="C2H6ppm" desc="乙烷" cdcType="0" order="4" shortAddr="11" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="O2ppm" desc="氧气" cdcType="0" order="8" shortAddr="12" importLevel="0" unit="ppm" precision="2"/>
+		<Do name="CmbuGas" desc="总可燃气" cdcType="0" order="9" shortAddr="13" importLevel="1" unit="ppm" precision="2"/>
+		<Do name="Hydrocarbon" desc="总烃" cdcType="0" order="16" shortAddr="14" importLevel="2" unit="ppm" precision="2"/>
+		<Do name="GasPres" desc="载气压力" cdcType="0" order="17" shortAddr="15" importLevel="1" unit="kPa" precision="2"/>
+		<Do name="H2AbsRate" desc="H2绝对产气速率" cdcType="0" order="18" shortAddr="16" importLevel="1" unit="mL/天" precision="2"/>
+		<Do name="H2RelRate" desc="H2相对产气速率" cdcType="0" order="19" shortAddr="17" importLevel="1" unit="%/月" precision="2"/>
+		<Do name="C2H2AbsRate" desc="C2H2绝对产气速率" cdcType="0" order="20" shortAddr="18" importLevel="1" unit="mL/天" precision="2"/>
+		<Do name="C2H2RelRate" desc="C2H2相对产气速率" cdcType="0" order="21" shortAddr="19" importLevel="1" unit="%/月" precision="2"/>
+		<Do name="CxHyAbsRate" desc="CxHy绝对产气速率" cdcType="0" order="22" shortAddr="20" importLevel="1" unit="mL/天" precision="2"/>
+		<Do name="CxHyRelRate" desc="CxHy相对产气速率" cdcType="0" order="23" shortAddr="21" importLevel="1" unit="%/月" precision="2"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<Do name="H2AlmTh" desc="H2报警阈值" cdcType="3" order="0" shortAddr="1"/>
+		<Do name="H2WrnTh" desc="H2警告阈值" cdcType="3" order="1" shortAddr="2"/>
+		<Do name="C2H2AlmTh" desc="C2H2报警阈值" cdcType="3" order="2" shortAddr="3"/>
+		<Do name="C2H2WrnTh" desc="C2H2警告阈值" cdcType="3" order="3" shortAddr="4"/>
+		<Do name="MstAlmTh" desc="微水报警阈值" cdcType="3" order="4" shortAddr="5"/>
+		<Do name="MstWrnTh" desc="微水警告阈值" cdcType="3" order="5" shortAddr="6"/>
+		<Do name="StartWork" desc="立即采集" cdcType="3" order="6" shortAddr="11"/>
+		<Do name="RestartSensor" desc="重载sensor" cdcType="3" order="7" shortAddr="12"/>
+		<Do name="RestartIED" desc="重载IED" cdcType="3" order="8" shortAddr="13"/>
+		<Do name="RestartAll" desc="重载All" cdcType="3" order="9" shortAddr="14"/>
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="MMXN" desc="铁心接地电流">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<Do name="AmpAlm" desc="铁心接地电流报警" cdcType="1" order="3" shortAddr="3" importLevel="1"/>
+		<Do name="AmpWrn" desc="铁心接地电流警告" cdcType="1" order="4" shortAddr="4" importLevel="1"/>
+		<!--遥信信息（FC=ST）结束-->
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="Amp" desc="铁心接地电流" cdcType="0" order="0" shortAddr="1" importLevel="2" unit="mA" precision="2" ratio="1"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<Do name="AmpAlmTh" desc="铁心接地电流报警阈值" cdcType="3" order="0" shortAddr="1"/>
+		<Do name="AmpWrnTh" desc="铁心接地电流警告阈值" cdcType="3" order="1" shortAddr="2"/>
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="SDMB" desc="中性点直流总电流">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<!--遥信信息（FC=ST）结束-->
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="DCNeuA" desc="中性点直流总电流" cdcType="0" order="0" shortAddr="1" importLevel="2" unit="mA" precision="2" ratio="1"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+	</Ln>
+	<Ln name="ZSAR" desc="氧化锌避雷器">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<Do name="TotAAlm" desc="全电流报警" cdcType="1" order="3" shortAddr="3" importLevel="1"/>
+		<Do name="TotAWrn" desc="全电流警告" cdcType="1" order="4" shortAddr="4" importLevel="1"/>
+		<Do name="RisAAlm" desc="阻性电流报警" cdcType="1" order="5" shortAddr="5" importLevel="1"/>
+		<Do name="RisAWrn" desc="阻性电流警告" cdcType="1" order="6" shortAddr="6" importLevel="1"/>
+		<!--遥信信息（FC=ST）结束-->
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="SysVol" desc="电压有效值" cdcType="0" order="0" ratio="1" unit="kV" precision="2" shortAddr="99" importLevel="1"/>
+		<Do name="RmsV50" desc="基波电压有效值" cdcType="0" order="1" ratio="1" unit="kV" precision="2" shortAddr="99" importLevel="0"/>
+		<Do name="VPhase" desc="基波电压相角" cdcType="0" order="2" ratio="57.29578" unit="°" precision="2" shortAddr="99" importLevel="0"/>
+		<Do name="TotA" desc="电流有效值" cdcType="0" order="3" ratio="1" unit="mA" precision="2" shortAddr="1" importLevel="2"/>
+		<Do name="RmsA50" desc="基波电流有效值" cdcType="0" order="4" ratio="1" unit="mA" precision="2" shortAddr="99" importLevel="0"/>
+		<Do name="APhase" desc="基波电流相角" cdcType="0" order="5" ratio="57.29578" unit="°" precision="2" shortAddr="99" importLevel="0"/>
+		<Do name="AVDiffer" desc="基波电流电压相角差" cdcType="0" order="6" ratio="57.29578" unit="°" precision="2" shortAddr="99" importLevel="1"/>
+		<Do name="RisA" desc="基波阻性电流" cdcType="0" order="7" ratio="1" unit="mA" precision="2" shortAddr="2" importLevel="2"/>
+		<Do name="LastActTime" desc="落雷时间" cdcType="0" order="8" ratio="1" unit="" precision="2" shortAddr="4" importLevel="1"/>
+		<Do name="ActCount" desc="落雷次数" cdcType="5" order="9" ratio="1" precision="2" shortAddr="5" importLevel="1"/>
+		<Do name="RisCaRte" desc="阻容比" cdcType="0" order="10" ratio="1" precision="2" shortAddr="3" importLevel="0"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<Do name="ReStart" desc="重载" cdcType="3" order="7" shortAddr="2"/>
+		<Do name="StartWork" desc="立即采集" cdcType="3" order="8" shortAddr="1"/>
+		<Do name="TotAAlmTh" desc="全电流报警阈值" cdcType="3" order="0" shortAddr="6"/>
+		<Do name="TotAWrnTh" desc="全电流警告阈值" cdcType="3" order="1" shortAddr="5"/>
+		<Do name="RisAAlmTh" desc="基波阻性电流报警阈值" cdcType="3" order="2" shortAddr="8"/>
+		<Do name="RisAWrnTh" desc="基波阻性电流警告阈值" cdcType="3" order="3" shortAddr="7"/>
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="SSBH" desc="套管">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<Do name="LeakAAlm" desc="泄漏电流报警" cdcType="1" order="3" shortAddr="3" importLevel="1"/>
+		<Do name="LeakAWrn" desc="泄漏电流警告" cdcType="1" order="4" shortAddr="4" importLevel="1"/>
+		<Do name="ReactAlm" desc="电容报警" cdcType="1" order="5" shortAddr="5" importLevel="1"/>
+		<Do name="ReactWarn" desc="电容警告" cdcType="1" order="6" shortAddr="6" importLevel="1"/>
+		<Do name="DieLossAlm" desc="介损报警" cdcType="1" order="7" shortAddr="7" importLevel="1"/>
+		<Do name="DieLossWarn" desc="介损警告" cdcType="1" order="8" shortAddr="8" importLevel="1"/>
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="SysVol" desc="电压有效值" cdcType="0" order="0" shortAddr="99" importLevel="1" unit="kV" precision="2"/>
+		<Do name="RmsV50" desc="基波电压有效值" cdcType="0" order="1" shortAddr="99" importLevel="0"/>
+		<Do name="VPhase" desc="基波电压相角" cdcType="0" order="2" shortAddr="99" unit="°" ratio="57.29578" precision="2" importLevel="1"/>
+		<Do name="LeakA" desc="电流有效值" cdcType="0" order="3" shortAddr="1" importLevel="2" unit="mA" precision="2"/>
+		<Do name="RmsA50" desc="基波电流有效值" cdcType="0" order="4" shortAddr="99" importLevel="l" unit="mA" precision="2"/>
+		<Do name="APhase" desc="基波电流相角" cdcType="0" order="5" shortAddr="99" unit="°" ratio="57.29578" precision="2" importLevel="1"/>
+		<Do name="AVDiffer" desc="基波电流电压相角差" cdcType="0" order="6" shortAddr="99" importLevel="1" unit="°" ratio="57.29578" precision="2"/>
+		<Do name="React" desc="相对电容" cdcType="0" order="7" shortAddr="2" importLevel="2" ratio="1" unit="" precision="2"/>
+		<Do name="AbsReact" desc="绝对电容" cdcType="0" order="8" shortAddr="3"/>
+		<Do name="LosFact" desc="介损" cdcType="0" order="9" shortAddr="4" importLevel="2" ratio="100" unit="%" precision="2"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<Do name="ReStart" desc="重载" cdcType="3" order="7" shortAddr="2"/>
+		<Do name="StartWork" desc="立即采集" cdcType="3" order="8" shortAddr="1"/>
+		<Do name="LeakAAlmTh" desc="泄漏电流报警阈值" cdcType="3" order="0" shortAddr="6"/>
+		<Do name="LeakAWrnTh" desc="泄漏电流警告阈值" cdcType="3" order="1" shortAddr="5"/>
+		<Do name="CapacAlmTh" desc="电容报警阈值" cdcType="3" order="2" shortAddr="8"/>
+		<Do name="CapacWrnTh" desc="电容警告阈值" cdcType="3" order="3" shortAddr="7"/>
+		<Do name="LosFactAlmTh" desc="介损报警阈值" cdcType="3" order="4" shortAddr="10"/>
+		<Do name="LosFactWrnTh" desc="介损警告阈值" cdcType="3" order="5" shortAddr="9"/>
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="GGIO" desc="非电量">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="3" importLevel="0"/>
+		<Do name="Channel1Alm" desc="数字通道1" cdcType="1" order="3" shortAddr="4" importLevel="1"/>
+		<Do name="Channel2Alm" desc="数字通道2" cdcType="1" order="4" shortAddr="5" importLevel="1"/>
+		<Do name="Channel3Alm" desc="数字通道3" cdcType="1" order="5" shortAddr="6" importLevel="1"/>
+		<Do name="Channel4Alm" desc="数字通道4" cdcType="1" order="6" shortAddr="7" importLevel="1"/>
+		<Do name="Channel5Alm" desc="数字通道5" cdcType="1" order="7" shortAddr="8" importLevel="1"/>
+		<Do name="Channel6Alm" desc="数字通道6" cdcType="1" order="8" shortAddr="9" importLevel="1"/>
+		<Do name="Channel7Alm" desc="数字通道7" cdcType="1" order="9" shortAddr="10" importLevel="1"/>
+		<Do name="Channel8Alm" desc="数字通道8" cdcType="1" order="10" shortAddr="11" importLevel="1"/>
+		<Do name="Channel9Alm" desc="数字通道9" cdcType="1" order="11" shortAddr="12" importLevel="1"/>
+		<Do name="Channel10Alm" desc="数字通道10" cdcType="1" order="12" shortAddr="13" importLevel="1"/>
+		<Do name="Channel11Alm" desc="数字通道11" cdcType="1" order="13" shortAddr="14" importLevel="1"/>
+		<Do name="Channel12Alm" desc="数字通道12" cdcType="1" order="14" shortAddr="15" importLevel="1"/>
+		<Do name="Channel13Alm" desc="数字通道13" cdcType="1" order="15" shortAddr="16" importLevel="1"/>
+		<Do name="Channel14Alm" desc="数字通道14" cdcType="1" order="16" shortAddr="17" importLevel="1"/>
+		<Do name="Channel15Alm" desc="数字通道15" cdcType="1" order="17" shortAddr="18" importLevel="1"/>
+		<Do name="Channel16Alm" desc="数字通道16" cdcType="1" order="18" shortAddr="19" importLevel="1"/>
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="Channel1Vallue" desc="模拟通道1" cdcType="0" order="0" shortAddr="1" importLevel="1"/>
+		<Do name="Channel2Vallue" desc="模拟通道2" cdcType="0" order="1" shortAddr="2" importLevel="1"/>
+		<Do name="Channel3Vallue" desc="模拟通道3" cdcType="0" order="2" shortAddr="3" importLevel="1"/>
+		<Do name="Channel4Vallue" desc="模拟通道4" cdcType="0" order="3" shortAddr="4" importLevel="1"/>
+		<Do name="Channel5Vallue" desc="模拟通道5" cdcType="0" order="4" shortAddr="5" importLevel="1"/>
+		<Do name="Channel6Vallue" desc="模拟通道6" cdcType="0" order="5" shortAddr="6" importLevel="1"/>
+		<Do name="Channel7Vallue" desc="模拟通道7" cdcType="0" order="6" shortAddr="7" importLevel="1"/>
+		<Do name="Channel8Vallue" desc="模拟通道8" cdcType="0" order="7" shortAddr="8" importLevel="1"/>
+		<Do name="Channel9Vallue" desc="模拟通道9" cdcType="0" order="8" shortAddr="9" importLevel="1"/>
+		<Do name="Channel10Vallue" desc="模拟通道10" cdcType="0" order="9" shortAddr="10" importLevel="1"/>
+		<Do name="Channel11Vallue" desc="模拟通道11" cdcType="0" order="10" shortAddr="11" importLevel="1"/>
+		<Do name="Channel12Vallue" desc="模拟通道12" cdcType="0" order="11" shortAddr="12" importLevel="1"/>
+		<Do name="Channel13Vallue" desc="模拟通道13" cdcType="0" order="12" shortAddr="13" importLevel="1"/>
+		<Do name="Channel14Vallue" desc="模拟通道14" cdcType="0" order="13" shortAddr="14" importLevel="1"/>
+		<Do name="Channel15Vallue" desc="模拟通道15" cdcType="0" order="14" shortAddr="15" importLevel="1"/>
+		<Do name="Channel16Vallue" desc="模拟通道16" cdcType="0" order="15" shortAddr="16" importLevel="1"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="SPDC" desc="局部放电">
+		<!--遥信信息（FC=ST）开始-->
+		<Do name="MoDevConf" desc="通信异常" cdcType="1" order="0" shortAddr="1"/>
+		<Do name="SupDevRun" desc="运行异常" cdcType="1" order="1" shortAddr="2"/>
+		<Do name="Health" desc="传感器健康状态" cdcType="4" order="2" shortAddr="12" importLevel="0"/>
+		<Do name="IfPaDis" desc="局部放电报警" cdcType="1" order="3" shortAddr="3"/>
+		<!--遥信信息（FC=ST）结束-->
+		<!--遥测信息（FC=MX）开始-->
+		<Do name="MvPaDis" desc="局部放电量最大值" cdcType="0" order="0" shortAddr="1"/>
+		<Do name="DisPha" desc="放电相位" cdcType="0" order="1" shortAddr="2"/>
+		<Do name="DisCount" desc="放电次数" cdcType="0" order="2" shortAddr="3"/>
+		<!--遥测信息（FC=MX）结束-->
+		<!--遥设信息（FC=SG）开始-->
+		<Do name="SmpProd" desc="采样间隔" cdcType="2" order="0" shortAddr="1"/>
+		<Do name="NextWorkTime" desc="下次采集时间" cdcType="2" order="1" shortAddr="2"/>
+		<Do name="ReStart" desc="重载" cdcType="2" order="2" shortAddr="3"/>
+		<Do name="StartWork" desc="立即采集" cdcType="2" order="3" shortAddr="4"/>
+		<!--遥设置信息（FC=SG）结束-->
+		<!--遥调信息（FC=SP）开始-->
+		<Do name="StartWork" desc="立即采集" cdcType="3" order="8" shortAddr="1"/>
+		<Do name="CtrHz" desc="测量单元中心频率" cdcType="3" order="0" shortAddr="2"/>
+		<Do name="BndWid" desc="测量单元带宽" cdcType="3" order="1" shortAddr="3"/>
+		<!--遥调信息（FC=SP）结束-->
+	</Ln>
+	<Ln name="MMET" desc="气象设备">
+		<!--目前气象设备采用的时rabbitmq的明码发送格式，name为传感器返回的参数名，shortAddr为映射的参数名，当name不再传感器列表中时，发送无效数据 -->
+		<Do name="Dm" cdcType="0" order="0" shortAddr="Dm"/>
+		<Do name="Sm" cdcType="0" order="1" shortAddr="Sm"/>
+		<Do name="Ta" cdcType="0" order="2" shortAddr="Ta"/>
+		<Do name="Tp" cdcType="0" order="3" shortAddr="Tp"/>
+		<Do name="Ua" cdcType="0" order="4" shortAddr="Ua"/>
+		<Do name="Pa" cdcType="0" order="5" shortAddr="Pa"/>
+	</Ln>
+	<Ln name="TCTR" desc="电流变送器">
+		<Do name="610" cdcType="0" desc="电流值" order="0" shortAddr="0"/>
+	</Ln>
+</LnMap>
