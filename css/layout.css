@@ -1,0 +1,45 @@
+/*
+重置元素，避免浏览器差异
+*/
+body,div,ul,li,a,img {
+    padding: 0;
+    margin: 0;
+}
+img{ border: none; }
+
+body{	
+    font: normal 14px "微软雅黑", "Arial", "Verdana", "sans-serif";
+    background: url("../img/homepage-bg-rp.png") repeat-x scroll center top #282828;
+    color: #E8E8E8;
+    font-size: 75%;
+    margin: 0;
+    padding: 0;
+}
+
+.layout{
+    background: url("../img/homepage-bg.png") no-repeat scroll center top transparent;
+}
+
+.wrapper {
+    min-height: 761px;
+    width: 1003px;
+    margin: 0px auto;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 422px;
+    top: 220px;
+}
+
+a {
+	color: #666;
+    text-decoration: none;
+}
+
+a:hover { font-weight: bold; }
+
+ul{
+    list-style: none; 
+}

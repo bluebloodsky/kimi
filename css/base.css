@@ -31,13 +31,12 @@ ul{
     margin: 0 auto;
 }
 #sym_header{
+    margin: 0 auto;
 	height: 154px ;
 	background-image: url(../img/home_01.jpg);
 	background-repeat: no-repeat;
     background-position: center 50%;
 	background-color: #ccc;
-	width: 100% ;
-	z-index: 3;
 }
 
 #sym_main{
@@ -61,11 +60,15 @@ ul{
     height: 30px;
     padding-top: 4px;
 }
-#header_nav{
-	margin: 0px auto;
-	padding-top: 85px;
-	width: 960px;
-	height: 35px;
+#nav{
+    margin: 0px auto;
+    padding-top: 85px;
+    width: 960px;
+    height: 35px; 
+}
+#header_nav{	
+    float: left;
+    height: 35px; 
 }
 
 #header_nav > li
