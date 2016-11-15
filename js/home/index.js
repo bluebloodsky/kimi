@@ -7,11 +7,27 @@ $(function(){
 		window.location.href = g_ss[0];
 	}else{
 		spn.init(function(mainDiv){
-	        mainDiv.load(root + "/content/home/home.htm" ,function(){
-	        	$("<img src='"+ root + "/api/index.php/img/1'>").appendTo(mainDiv);
-	        	$("<video src='"+ root + "/api/index.php/video/1'  controls='controls' height='270' width='480px'></video>").appendTo(mainDiv);
-			    spn.lang.init();
-	        });
+		    var language = spn.lang.getLanguage();
+		    spn.lang.init();
+		    mainDiv.css("width" , "1250px");
+		    $.getJSON(root + "/json/json_home.js").done(function(json){
+			    $.each(json,function(index,item){
+			        var new_div = $("<div class='content'></div>").appendTo(mainDiv);
+			        if(index == 0){
+			            new_div.addClass("active");
+			        }
+			        $("<img style='float:right' src='" + root + "/img/home/" + item.name + "/banner.jpg'>").appendTo(new_div);
+			        
+			        new_div.hover(function(){
+			            var ac = $(".active").removeClass("active");
+			            new_div.addClass("active");          
+			        });
+			        new_div.click(function(){
+			            window.location.href = root + item.url;			            
+			        })
+			    });
+		    });
+
 	    });
 	}
  });

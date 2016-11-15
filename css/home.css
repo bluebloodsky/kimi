@@ -1,0 +1,13 @@
+.content{
+    width: 15%;
+    float: left;
+    overflow: hidden;
+    cursor: pointer;
+    transition:width 1s;
+    -moz-transition:width 1s; /* Firefox 4 */
+    -webkit-transition:width 1s; /* Safari and Chrome */
+    -o-transition:width 1s; /* Opera */
+}
+.active{
+    width: 70%;
+}

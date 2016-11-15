@@ -1,7 +1,7 @@
 <?php
 $app->group('/img', function () {
 	$this->get('/[{id}]' , function ($req, $res, $args) {
-		$location = "D:/web/kimi/api/image/1.gif";		
+		$location = API . "image". DS ."1.gif";		
        	$newRes = $res->withHeader(
         'Content-Type',
         'image/jpg'
@@ -14,7 +14,7 @@ $app->group('/img', function () {
 
 $app->group('/video', function () {
     $this->get('/[{id}]' , function ($req, $res, $args) {
-        $location = "D:/web/kimi/api/video/2.mp4";        
+        $location =  API . "video". DS ."2.mp4";        
         $newRes = $res->withHeader(
         'Content-Type',
         'video/mp4'

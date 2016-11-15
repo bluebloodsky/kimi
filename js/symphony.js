@@ -49,8 +49,11 @@ window.spn = {
 			var allcookies = document.cookie;
 		    $.cookie("zl_lang" , language , { expires: 9999 , path: '/'});
 		} ,
+		getLanguage:function(){
+		    return ($.cookie("zl_lang") || "cn");
+		} ,
 		translate : function(){
-			var language = ($.cookie("zl_lang") || "cn");  
+			var language = spn.lang.getLanguage();  
 			$.getJSON(root + "/json/json_" + language + ".js").done(function(json){	
 		        $("[lang]").each(function() {  
 		        	var lang_attr = $(this).attr("lang") ;
