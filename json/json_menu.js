@@ -3,17 +3,9 @@
 	"cn_name" : "首页",
 	"url" : "/pages/index.html"
 },{
-	"en_name": "About Kimi",
-	"cn_name":"关于基米",
-	"items":[{
-		"en_name" : "Profile",
-		"cn_name" : "企业介绍",
-		"url"  : "/pages/about.html?profile"
-	},{
-		"en_name" : "Culture",
-		"cn_name" : "企业文化",
-		"url"  : "/pages/about.html?culture"
-	}]
+	"en_name": "About Us",
+	"cn_name":"关于我们",	
+	"url"  : "/pages/about.html"
 },{
 	"en_name" : "Products",
 	"cn_name" : "产品中心",

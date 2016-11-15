@@ -2,6 +2,7 @@
 window.spn = {
 	v : "beta 1.0" ,
 	init : function(loadContent){
+		$(document).bind("contextmenu", function() { return false; });
 		$("#symphony").load(root + "/content/sym_html.htm",function(){	
 	        var head = $("#header_top");
 	        var tb_link = $('<a href="https://aierlamp.taobao.com/" target="_blank" style="margin-right:150px;"></a>').appendTo(head);
