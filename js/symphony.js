@@ -4,7 +4,7 @@ window.spn = {
 	init : function(loadContent){
 		$(document).bind("contextmenu", function() { return false; });
 		$("#symphony").load(root + "/content/sym_html.htm",function(){	
-	        var head = $("#header_top");
+	        var head = $("#header-top");
 	        var tb_link = $('<a href="https://aierlamp.taobao.com/" target="_blank" style="margin-right:150px;"></a>').appendTo(head);
 	        tb_link.append($('<img align="absmiddle" alt="艾尔照明旗舰店" border="0" src="'+ root + '/img/taobao.jpg">'));
 	        $('<a href="JavaScript:void(0)">中文</a>').appendTo(head).click(function(){
@@ -16,27 +16,29 @@ window.spn = {
 	        	spn.lang.setLanguage("en");
 	        	window.location.reload();
 	        });
-			spn.menuBox = $("#header_nav");	
+			spn.menuBox = $("#header-nav");	
 			spn.building();	   
-			loadContent($("#sym_main"));
+			loadContent($("#sym-main"));
 		});
 	},
 	building : function(){
 		$.getJSON(root + "/json/json_menu.js").done(function(json){
 		   var lang = ($.cookie("zl_lang") || "cn");  
 	       $.each(json,function(index,item){
-	        var new_li = $("<li></li>").appendTo(spn.menuBox);
-	        /*添加二级菜单*/
-	        if(item.items){
-		      $("<a href='JavaScript:void(0)'>" + item[lang+"_name"] + "</a>").appendTo(new_li);
-	          var sec_ul = $("<ul></ul>").appendTo(new_li);
-	          $.each(item.items ,function(sec_index,sec_item){
-	              $("<li><a href='" + root + sec_item.url +"'>" + sec_item[lang+"_name"] + "</a></li>").appendTo(sec_ul);			           
-	          });
-	        }else{
-		        $("<a href='" + root + item.url +"'>" + item[lang+"_name"] + "</a>").appendTo(new_li);
-	        }			      
-	       })
+		        var new_li = $("<li></li>").appendTo(spn.menuBox);
+		        /*添加二级菜单*/
+		        if(item.url){
+			        $("<a href='" + root + item.url +"'>" + item[lang+"_name"] + "</a>").appendTo(new_li);
+		        }else{
+			      $("<a href='JavaScript:void(0)'>" + item[lang+"_name"] + "</a>").appendTo(new_li);
+		        }		
+		        if(item.items){
+		          var sec_ul = $("<ul></ul>").appendTo(new_li);
+		          $.each(item.items ,function(sec_index,sec_item){
+		              $("<li><a href='" + root + sec_item.url +"'>" + sec_item[lang+"_name"] + "</a></li>").appendTo(sec_ul);			           
+		          });
+		        }
+	        })
 		}).fail(function(){
 		 	alert("nav JSON error!");
 		});

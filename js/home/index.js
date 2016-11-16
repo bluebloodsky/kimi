@@ -9,16 +9,17 @@ $(function(){
 		spn.init(function(mainDiv){
 		    var language = spn.lang.getLanguage();
 		    spn.lang.init();
+		    var percent = 15 ; //每个图片最小宽度比
 		    var main = $("<div class='home-wrapper'></div>").appendTo(mainDiv);
 		    $.getJSON(root + "/json/json_home.js").done(function(json){
 			    $.each(json,function(index,item){
 			        var new_div = $("<div class='home-content'></div>").appendTo(main);
-			        new_div.css("right" , index * 15 + "%");
+			        new_div.css("right" , index * percent + "%");
 			        $("<img src='" + root + "/img/home/" + item.name + "/banner.jpg'>").appendTo(new_div);
 
 			        var desc = item[language + "_name"];
 			        $("<span class='home-hor'>"+desc+"</span>").appendTo(new_div);
-			        if(index == 2){
+			        if(index == json.length-1){
 			            new_div.addClass("active");
 				        $("<span class='home-ver'>"+desc+"</span>").appendTo(new_div).hide();
 			        }
@@ -30,11 +31,12 @@ $(function(){
 			            var num = active_index - index ;
 			            if(num == 0){
 			            	return ;
-			            }else{			            	
+			            }else{			  
+			                var offset = 100 - percent*json.length;          	
 			            	if(num < 0){ //右移
-				            	$(".home-content:gt("+active_index+"):lt("+(-num)+")").animate({right:"-=55%"});
+				            	$(".home-content:gt("+active_index+"):lt("+(-num)+")").animate({right:"-="+offset+"%"});
 				            }else{
-				            	$(".home-content:gt("+index+"):lt("+num+")").animate({right:"+=55%"});
+				            	$(".home-content:gt("+index+"):lt("+num+")").animate({right:"+="+offset+"%"});
 				            }
 
 				            $(".home-content.active .home-ver").show();

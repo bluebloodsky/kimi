@@ -1,6 +1,6 @@
  $(function(){
    spn.init(function(mainDiv){
-     mainDiv.load(root + "/content/about/about.htm");
+     mainDiv.load(root + "/content/product/product.htm");
    });
  });
  $.ajaxSetup ({

@@ -1,0 +1,103 @@
+.product-main{
+	width: 1000px ;
+	height: 461px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #D7D7D7;
+	background-color: #fff;
+}
+.slide-left{
+	position: absolute;
+	left: 4px;
+	top: 5px;
+	bottom: 4px;
+	width: 818px; 
+}
+.slide-right{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	bottom: 4px;
+	width: 166px; 
+}
+.slide-left > .prev{
+    position: absolute;
+	background: url("../img/arrow-left.png") left top no-repeat;
+    left: 4px;
+    width: 30px;
+    height: 69px;
+    display: block;
+    top: 50%;
+    margin-top:-35px;	
+    z-index: 999;
+}
+
+.slide-left > .next{
+    position: absolute;
+	background: url("../img/arrow-right.png") left top no-repeat;
+    right: 4px;
+    width: 30px;
+    height: 69px;
+    display: block;
+    top: 50%;
+    margin-top:-27px;	
+    z-index: 99;
+}
+
+.slide-left > .slides ,
+.slide-left > .slides > img{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	top: 0;
+}
+
+.active{
+	z-index: 2;
+}
+
+.slide-right > .up{
+	position: absolute;
+	background: url("../img/up.png") left top no-repeat;
+    left: 0;
+    top: 0;
+    width: 166px;
+    height: 21px;
+    display: block;
+    z-index: 99;
+}
+
+.slide-right > .down{
+	position: absolute;
+	background: url("../img/down.png") left top no-repeat;
+    left: 0;
+    bottom: 0;
+    width: 166px;
+    height: 21px;
+    display: block;
+    z-index: 99;
+}
+
+.slide-right > .pager{
+	position: absolute;
+	top: 25px;
+	bottom: 25px;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+}
+.slide-right > .pager a {
+    position: relative;
+    width: 77px;
+    height: 58px;
+    display: block;
+    float: left;
+    margin-bottom: 7px;
+    border: 1px solid #fff;
+}
+
+.slide-right > .pager a:hover, .slide-right > .pager a.activeSlide {
+    border: 1px solid #D37C00;
+}

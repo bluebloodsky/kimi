@@ -30,7 +30,7 @@ ul{
 #symphony{
     margin: 0 auto;
 }
-#sym_header{
+#sym-header{
     margin: 0 auto;
 	height: 154px ;
 	background-image: url(../img/home_01.jpg);
@@ -40,13 +40,13 @@ ul{
     padding-bottom: 5px;
 }
 
-#sym_main{
+#sym-main{
 	background-color: #ccc;
     margin: 0 auto;
     overflow: auto;
 }
 
-#sym_footer{
+#sym-footer{
 	height: 18px;  
 	line-height: 18px;
     text-align: center;
@@ -54,7 +54,7 @@ ul{
     background: #ccc;
 }
 
-#header_top{
+#header-top{
 	margin: 0px auto;
     padding-left: 390px;
     width: 540px;
@@ -67,29 +67,29 @@ ul{
     width: 960px;
     height: 33px; 
 }
-#header_nav{	
+#header-nav{	
     float: left;
     height: 33px; 
 }
 
-#header_nav > li
+#header-nav > li
 {
     position: relative;
     float: left;
     width: 121px;
 }
 
-#header_nav > li > a {
+#header-nav > li > a {
     width:120px; 
     border-right:1px solid #ccc; 
   
 }
-#header_nav > li > ul
+#header-nav > li > ul
 {
     position: absolute;
     left: -9999px;
 }
-#header_nav > li:hover > ul 
+#header-nav > li:hover > ul 
 {
     display: block;
     position: relative;
@@ -97,17 +97,17 @@ ul{
     border: 1px solid #ccc;
     z-index: 2;
 }
-#header_nav > li:hover > ul > li{
+#header-nav > li:hover > ul > li{
     background: #861;
 }
-#header_nav > li:hover > ul > li > a
+#header-nav > li:hover > ul > li > a
 {
     min-width: 120px;
     border-bottom : 1px solid #ccc; 
 }
 
-#header_nav > li > a ,
-#header_nav > li:hover > ul > li > a{
+#header-nav > li > a ,
+#header-nav > li:hover > ul > li > a{
 	height: 33px;
     line-height: 33px;
     text-align:center; 
@@ -115,7 +115,7 @@ ul{
 	color : #fff;
 }
 
-#header_nav > li > a:hover,
-#header_nav > li:hover > ul > li > a:hover{
+#header-nav > li > a:hover,
+#header-nav > li:hover > ul > li > a:hover{
     background-color: #972;
 }
