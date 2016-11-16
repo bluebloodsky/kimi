@@ -62,14 +62,12 @@ ul{
     padding-top: 4px;
 }
 #nav{
-    margin: 0px auto;
     padding-top: 90px;
-    width: 960px;
-    height: 33px; 
+    text-align: center;
 }
 #header-nav{	
-    float: left;
-    height: 33px; 
+    margin: 0 auto;
+    display: inline-block;
 }
 
 #header-nav > li
@@ -95,7 +93,7 @@ ul{
     position: relative;
     left: 0;
     border: 1px solid #ccc;
-    z-index: 2;
+    z-index: 9999;
 }
 #header-nav > li:hover > ul > li{
     background: #861;

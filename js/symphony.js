@@ -23,8 +23,9 @@ window.spn = {
 	},
 	building : function(){
 		$.getJSON(root + "/json/json_menu.js").done(function(json){
-		   var lang = ($.cookie("zl_lang") || "cn");  
-	       $.each(json,function(index,item){
+			spn.json_menu = json;
+		    var lang = ($.cookie("zl_lang") || "cn");  
+	        $.each(json,function(index,item){
 		        var new_li = $("<li></li>").appendTo(spn.menuBox);
 		        /*添加二级菜单*/
 		        if(item.url){

@@ -1,5 +1,5 @@
 [{
-    "en_name" : "company info",
+    "en_name" : "COMPANY OVERVIEW",
     "cn_name" : "公司概况",
 	"src" : "/img/about/companyoverview_cn.jpg"	
 },{
@@ -7,7 +7,7 @@
     "cn_name" : "企业文化",
 	"src" : "/img/about/Culture_cn.jpg"	
 },{
-	"en_name" : "Story",
+	"en_name" : "Innovation Story",
 	"cn_name" : "创新轨迹",
 	"src" : "/img/about/story_cn.jpg"	
 }]

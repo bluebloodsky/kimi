@@ -1,4 +1,19 @@
-.product-main{
+#product-menu{
+    text-align: center;
+    background-color: #ddd;
+    width: 1000px ;
+    margin: 0 auto;
+}
+#product-menu > ul{
+    margin: 0 auto;
+    padding: 5px 35px 0 0;
+    display: inline-block;
+}
+#product-menu > ul > li {
+    float: left;
+    width: 121px;
+}
+#product-main{
 	width: 1000px ;
 	height: 461px;
 	margin: 0 auto;
@@ -35,7 +50,7 @@
 
 .slide-left > .next{
     position: absolute;
-	background: url("../img/arrow-right.png") left top no-repeat;
+	background: url("../img/arrow-right.png") right top no-repeat;
     right: 4px;
     width: 30px;
     height: 69px;
@@ -43,6 +58,12 @@
     top: 50%;
     margin-top:-27px;	
     z-index: 99;
+}
+.slide-left > .prev:hover{
+    background-position: left bottom
+}
+.slide-left > .next:hover{
+    background-position: right bottom
 }
 
 .slide-left > .slides ,
@@ -88,16 +109,33 @@
 	right: 0;
 	overflow: hidden;
 }
-.slide-right > .pager a {
+
+.slide-right > .pager > .pager-inner{
+    position: relative;
+    width: 100%;
+    overflow: auto;
+}
+.slide-right > .pager > .pager-inner > a {
     position: relative;
     width: 77px;
     height: 58px;
     display: block;
     float: left;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
     border: 1px solid #fff;
 }
 
-.slide-right > .pager a:hover, .slide-right > .pager a.activeSlide {
+.slide-right > .pager > .pager-inner > a > span{
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    color: #fff;
+    font-size: 10px
+}
+
+.slide-right > .pager .right{
+    margin-left: 8px;
+}
+.slide-right > .pager a:hover, .slide-right > .pager > .pager-inner > a.active {
     border: 1px solid #D37C00;
 }

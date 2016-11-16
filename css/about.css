@@ -1,7 +1,16 @@
-.about-wrapper{
+#about-wrapper{
 	width: 990px ;
 	margin: 0 auto ;
-	position: relative;
+    overflow: hidden;
+    position: relative ;
+    height: 450px;
+}
+#about-pd,
+.about-item{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
 }
 .about-title{
 	text-align: center;
@@ -18,17 +27,17 @@
 }
 .about-main{
 	position: relative;
-    height: 400px;	
     overflow: hidden;
+    height: 400px;	
 }
 
 .about-main>img{
 	position: absolute;
 	left: 0;
-	top: 0;
+	bottom: 0;
 }
 .about-main>.top{	
-	top: -400px;
+	bottom: -400px;
 }
 .about-main>.previous{
 	position: absolute;
@@ -79,7 +88,7 @@
 	right: 9999px;
 }
 .about-main>.next:hover{
-	background: url("../img/next.png") right bottom no-repeat;
+	background-position: right bottom;
 	width: 182px;
     cursor: pointer;
 }
