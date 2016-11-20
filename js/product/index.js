@@ -9,7 +9,8 @@ $(function(){
 	     	smallDiv.empty();
 	     	$.getJSON(root + "/json/json_product.js").done(function(json){
 	     		$.each(json,function(index,item){
-		     		var bigImg = $('<img src="' + root + item.src + '">').appendTo(bigDiv);
+		     		var bigLink = $('<a class="jqzoom" href="'+ root + item.big_src + '"><img src="' + root + item.src + '"></a>').appendTo(bigDiv);
+
 		     		var smallLink = $('<a href="javascript:void(0)"><img src="'+ root + item.small_src +'"><span>'+ (index+1) + '/' + json.length + '</span></a>').appendTo(smallDiv);
 		     		smallLink.click(function(){
 		     			var pre_index = $(".slides > img").index($(".slides > img.active")[0]);
@@ -18,11 +19,18 @@ $(function(){
 		     			}
 		     		});
 		     		if (index == 0) {
-		     			bigImg.addClass("active");
+		     			bigLink.addClass("active");
 		     			smallLink.addClass("active");
 		     		};
 	     		});
 
+				$('.jqzoom').jqzoom({
+		            zoomType: 'standard',
+		            zoomWidth: 200,
+                    zoomHeight: 450,
+                    left: 200,
+                    title:false
+		        });
 	     		$(".pager-inner > a:odd").addClass("right");
 
 	     		var switchItem = function(index ,nxtIndex){
