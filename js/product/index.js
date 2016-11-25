@@ -1,19 +1,18 @@
 $(function(){
     spn.init(function(mainDiv){
-        mainDiv.load(root + "/content/product/product.htm" ,function(){
-
-        	 spn.lang.init();
+        mainDiv.load(root + "/content/product/index.htm" ,function(){
+        	spn.lang.init();
 	     	var bigDiv = $(".slide-left .slides");
 	     	var smallDiv = $(".slide-right .pager .pager-inner");
 	     	bigDiv.empty();
 	     	smallDiv.empty();
 	     	$.getJSON(root + "/json/json_product.js").done(function(json){
 	     		$.each(json,function(index,item){
-		     		var bigLink = $('<a class="jqzoom" href="'+ root + item.big_src + '"><img src="' + root + item.src + '"></a>').appendTo(bigDiv);
+		     		var bigLink = $('<div class="jqzoom"><img src="' + root + item.src + '" jqimg="'+  root + item.big_src +'"></div>').appendTo(bigDiv);
 
 		     		var smallLink = $('<a href="javascript:void(0)"><img src="'+ root + item.small_src +'"><span>'+ (index+1) + '/' + json.length + '</span></a>').appendTo(smallDiv);
 		     		smallLink.click(function(){
-		     			var pre_index = $(".slides > img").index($(".slides > img.active")[0]);
+		     			var pre_index = $(".pager-inner > a").index($(".pager-inner > a.active")[0]);
 		     			if(pre_index != index){
 		     				switchItem(pre_index,index);
 		     			}
@@ -24,13 +23,14 @@ $(function(){
 		     		};
 	     		});
 
-				$('.jqzoom').jqzoom({
-		            zoomType: 'standard',
-		            zoomWidth: 200,
-                    zoomHeight: 450,
-                    left: 200,
-                    title:false
+				$('.jqzoom').jqueryzoom({
+		            xzoom: 165, //放大图的宽度(默认是 200)
+	                yzoom: 165, //放大图的高度(默认是 200)
+	                offset: 5, //离原图的距离(默认是 10)
+	                position: "right", //放大图的定位(默认是 "right")
+	                preload: 1
 		        });
+
 	     		$(".pager-inner > a:odd").addClass("right");
 
 	     		var switchItem = function(index ,nxtIndex){
@@ -42,20 +42,20 @@ $(function(){
 	     			$(".pager-inner > a:eq(" + index + ")").removeClass("active");
 	     			$(".pager-inner > a:eq(" + nxtIndex + ")").addClass("active");
 
-	     			$(".slides > img:eq(" + index + ")").removeClass("active");
-	     			$(".slides > img:eq(" + nxtIndex + ")").addClass("active");
+	     			$(".slides > div:eq(" + index + ")").removeClass("active");
+	     			$(".slides > div:eq(" + nxtIndex + ")").addClass("active");
 
 	     		};
 
 	     		$(".slide-left .prev").click(function(){
-	     			var index = $(".slides > img").index($(".slides > img.active")[0]);
+	     			var index = $(".pager-inner > a").index($(".pager-inner > a.active")[0]);
 	     			var nxtIndex = index > 0 ? (index -1) : (json.length-1);
 	     			switchItem(index,nxtIndex);
 
 	     		});
 	     		$(".slide-left .next").click(function(){
-	     			var index = $(".slides > img").index($(".slides > img.active")[0]);
-	     			var nxtIndex = (index < json.length-1)? (index +1) : 0;					
+	     			var index = $(".pager-inner > a").index($(".pager-inner > a.active")[0]);
+		     		var nxtIndex = (index < json.length-1)? (index +1) : 0;					
 					switchItem(index,nxtIndex);
 	     		});
 

@@ -1,0 +1,21 @@
+#conatact-wrapper{
+    position: relative;
+	height: 500px;
+	width: 1000px;
+	margin: 0 auto;
+}
+.left-pad{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+	width: 80% ;
+}
+
+.right-pad{
+	position: absolute;
+    left: 80%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}

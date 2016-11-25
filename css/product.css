@@ -13,6 +13,12 @@
     float: left;
     width: 121px;
 }
+#product-menu a.active{
+    color : #D37C00;
+}
+#product-menu a:hover{
+    color : #D37C00;
+}
 #product-main{
 	width: 1000px ;
 	height: 461px;
@@ -57,7 +63,7 @@
     display: block;
     top: 50%;
     margin-top:-27px;	
-    z-index: 99;
+    z-index: 999;
 }
 .slide-left > .prev:hover{
     background-position: left bottom
@@ -67,7 +73,7 @@
 }
 
 .slide-left > .slides ,
-.slide-left > .slides > img{
+.slide-left > .slides > div{
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -76,7 +82,7 @@
 }
 
 .active{
-	z-index: 2;
+	z-index: 99;
 }
 
 .slide-right > .up{

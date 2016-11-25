@@ -17,7 +17,7 @@ body{
 }
 
 .layout{
-    background: url("../img/homepage-bg.png") no-repeat scroll center top transparent;
+    background: url("../img/homepage-bg.jpg") no-repeat scroll center top transparent;
 }
 
 .wrapper {
@@ -29,16 +29,30 @@ body{
 
 .logo {
     position: absolute;
-    left: 422px;
-    top: 220px;
+    left: 502px;
+    top: 200px;
 }
 
-a {
-	color: #666;
+.language-bar {
+    position: absolute;
+    left: 550px;
+    top: 450px;
+}
+.language-bar > a {
+    display: block;
+    float: left;
+    margin-left: 25px;
+    font-size: 100%;
+    background: url("../img/language_sorrow.png") no-repeat scroll 7px 9px #E60511;
+    color: #FFF;
+    padding: 3px 7px 3px 14px;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
-a:hover { font-weight: bold; }
+a:hover { 
+color: #000;
+}
 
 ul{
     list-style: none; 
