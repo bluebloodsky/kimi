@@ -13,11 +13,10 @@
     float: left;
     width: 121px;
 }
-#product-menu a.active{
-    color : #D37C00;
-}
+#product-menu a.active,
 #product-menu a:hover{
-    color : #D37C00;
+    /*color : #D37C00;*/
+    font-weight: bold;
 }
 #product-main{
 	width: 1000px ;

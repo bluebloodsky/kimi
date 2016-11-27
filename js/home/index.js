@@ -57,5 +57,5 @@ $(function(){
  });
 
  $.ajaxSetup ({
-	cache: false //close AJAX cache
+	// cache: false //close AJAX cache
 });

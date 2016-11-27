@@ -8,8 +8,8 @@ function getRootPath(){
     var localhostPaht=curPath.substring(0,pos);
     //获取带"/"的项目名，如：/test
     var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-     return(localhostPaht);
-    // return(localhostPaht);
+    return(localhostPaht);
+    // return(localhostPaht + projectName);
 };
 
 var root = getRootPath();

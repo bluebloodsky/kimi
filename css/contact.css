@@ -1,4 +1,4 @@
-#conatact-wrapper{
+#contact-wrapper{
     position: relative;
 	height: 500px;
 	width: 1000px;
@@ -9,12 +9,12 @@
     left: 0;
     top: 0;
     bottom: 0;
-	width: 80% ;
+	width: 50% ;
 }
 
 .right-pad{
 	position: absolute;
-    left: 80%;
+    left: 50%;
     top: 0;
     bottom: 0;
     right: 0;
